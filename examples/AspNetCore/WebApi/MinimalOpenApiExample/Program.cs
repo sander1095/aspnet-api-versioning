@@ -9,7 +9,6 @@ var builder = WebApplication.CreateBuilder( args );
 var services = builder.Services;
 
 services.AddProblemDetails();
-services.AddEndpointsApiExplorer();
 services.AddApiVersioning(
             options =>
             {
