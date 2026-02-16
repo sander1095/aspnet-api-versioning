@@ -1,7 +1,4 @@
 parameters:
-- name: solution
-  type: string
-  default: ''
 - name: configuration
   type: string
   default: Release
@@ -14,7 +11,7 @@ steps:
   displayName: Pack Packages
   inputs:
     command: pack
-    projects: ${{ parameters.solution }}
+    projects: asp.slnx
     ${{ if eq(parameters.versionSuffix, '') }}:
         arguments: --no-build --configuration ${{ parameters.configuration }}
     ${{ else }}:
