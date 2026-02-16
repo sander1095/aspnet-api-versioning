@@ -38,12 +38,10 @@ variables:
 steps:
 - template: build/steps-ci.yml
   parameters:
-    solution: $(Solution)
     configuration: $(BuildConfiguration)
 
 - ${{ if eq(variables['Build.Reason'], 'Manual') }}:
   - template: build/steps-release.yml
     parameters:
-      solution: $(Solution)
       configuration: $(BuildConfiguration)
       versionSuffix: $(VersionSuffix)
