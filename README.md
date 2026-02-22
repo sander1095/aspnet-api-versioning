@@ -119,6 +119,15 @@ You can find additional examples, documentation, and getting started instruction
 
 Have a general question, suggestion, or other feedback? Check out how you can [contribute](docs/CONTRIBUTING.md).
 
+## Support
+
+Released versions align to the [.NET Support Policy](https://dotnet.microsoft.com/en-us/platform/support/policy) with
+support for `N-1` Long Term Support (LTS) release types. When LTS versions reach end of support, no additional support
+or servicing will be officially supported. Critical bug support in previous versions will be addressed on a case by case
+basis, evaluated by the project maintainers. Support for preview releases, even of a future LTS version, should not be
+expected. Released versions have platform affinity. There is no guarantee or official support of old library versions
+working with newer .NET platform releases, even if they happen to fully or partially function as expected.
+
 ## Code of Conduct
 
 This project has adopted the code of conduct defined by the Contributor Covenant to clarify expected behavior in our community.
