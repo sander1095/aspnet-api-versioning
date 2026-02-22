@@ -60,9 +60,3 @@ steps:
     pathToPublish: $(Build.ArtifactStagingDirectory)/packages
     publishLocation: Container
     artifactName: NuGet Packages
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: $(Build.ArtifactStagingDirectory)/packages/_manifest
-    artifact: sbom
-  displayName: Publish SBOM
