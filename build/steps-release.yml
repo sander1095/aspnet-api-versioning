@@ -36,9 +36,33 @@ steps:
     --timestamp-url http://timestamp.digicert.com
   displayName: Sign Artifacts
 
+- powershell: |
+    Invoke-WebRequest `
+      -Uri https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-win-x64.exe `
+      -OutFile sbom-tool.exe
+  displayName: Download SBOM Tool
+
+- powershell: |
+    .\sbom-tool.exe generate `
+      -b "$(Build.ArtifactStagingDirectory)" `
+      -bc "$(Build.SourcesDirectory)" `
+      -pn "ASP.NET API Versioning" `
+      -pv "$(Build.BuildNumber)" `
+      -ps ".NET Foundation" `
+      -nsb "urn:dnf:aspnet-api-versioning" `
+      -mi SPDX:3.0
+      -V Verbose
+  displayName: Generate SBOM
+
 - task: PublishBuildArtifacts@1
   displayName: Publish Artifacts
   inputs:
     pathToPublish: $(Build.ArtifactStagingDirectory)/packages
     publishLocation: Container
     artifactName: NuGet Packages
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: /$(Build.ArtifactStagingDirectory)/_manifest
+    artifact: sbom
+  displayName: Publish SBOM
