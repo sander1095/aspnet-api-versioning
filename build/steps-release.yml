@@ -43,14 +43,14 @@ steps:
   displayName: Download SBOM Tool
 
 - powershell: |
-    .\sbom-tool.exe generate `
-      -b "$(Build.ArtifactStagingDirectory)" `
+    ./sbom-tool.exe generate `
+      -b "$(Build.ArtifactStagingDirectory)/packages" `
       -bc "$(Build.SourcesDirectory)" `
       -pn "ASP.NET API Versioning" `
       -pv "$(Build.BuildNumber)" `
       -ps ".NET Foundation" `
       -nsb "urn:dnf:aspnet-api-versioning" `
-      -mi SPDX:3.0
+      -mi SPDX:3.0 `
       -V Verbose
   displayName: Generate SBOM
 
@@ -63,6 +63,6 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: /$(Build.ArtifactStagingDirectory)/_manifest
+    targetPath: $(Build.ArtifactStagingDirectory)/packages/_manifest
     artifact: sbom
   displayName: Publish SBOM
