@@ -20,12 +20,10 @@ public class AcceptanceTest
         var builder = WebApplication.CreateBuilder();
 
         builder.WebHost.UseTestServer();
-        builder.Services.AddControllers()
-                        .AddApplicationPart( GetType().Assembly );
         builder.Services.AddApiVersioning( options => AddPolicies( options ) )
-                        .AddMvc()
                         .AddApiExplorer( options => options.GroupNameFormat = "'v'VVV" )
                         .AddOpenApi();
+        builder.Services.AddMvcCore().ConfigureApplicationPartManager( m => m.ApplicationParts.Clear() );
 
         var app = builder.Build();
         var api = app.NewVersionedApi( "Test" )
@@ -36,7 +34,7 @@ public class AcceptanceTest
         app.MapOpenApi().WithDocumentPerVersion();
 
         var cancellationToken = TestContext.Current.CancellationToken;
-        using var stream = File.OpenRead( Path.Combine( AppContext.BaseDirectory, "Content", "v1.json" ) );
+        using var stream = File.OpenRead( Path.Combine( AppContext.BaseDirectory, "Content", "v1-minimal.json" ) );
         var expected = await JsonNode.ParseAsync( stream, default, default, cancellationToken );
 
         await app.StartAsync( cancellationToken );

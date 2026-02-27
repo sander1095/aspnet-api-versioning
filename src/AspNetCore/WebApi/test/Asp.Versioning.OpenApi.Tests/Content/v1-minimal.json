@@ -11,7 +11,7 @@
     }
   ],
   "paths": {
-    "/Test": {
+    "/test/{id}": {
       "get": {
         "tags": [
           "Test"
@@ -21,14 +21,12 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
             "description": "",
+            "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
+              "type": "integer",
               "format": "int32"
             }
           },
@@ -47,27 +45,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "pattern": "^-?(?:0|[1-9]\\d*)$",
-                  "type": [
-                    "integer",
-                    "string"
-                  ],
-                  "format": "int32"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "pattern": "^-?(?:0|[1-9]\\d*)$",
-                  "type": [
-                    "integer",
-                    "string"
-                  ],
-                  "format": "int32"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "pattern": "^-?(?:0|[1-9]\\d*)$",
                   "type": [
@@ -78,6 +56,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }

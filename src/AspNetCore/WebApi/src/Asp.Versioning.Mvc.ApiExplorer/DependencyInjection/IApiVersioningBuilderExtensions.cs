@@ -59,6 +59,7 @@ public static class IApiVersioningBuilderExtensions
         var services = builder.Services;
 
         services.AddMvcCore().AddApiExplorer();
+        services.AddEndpointsApiExplorer();
         services.TryAddSingleton<IOptionsFactory<ApiExplorerOptions>, ApiExplorerOptionsFactory<ApiExplorerOptions>>();
         services.TryAddTransient<IApiVersionDescriptionProviderFactory, ApiVersionDescriptionProviderFactory>();
         services.TryAddSingleton( static sp => sp.GetRequiredService<IApiVersionDescriptionProviderFactory>().Create() );
