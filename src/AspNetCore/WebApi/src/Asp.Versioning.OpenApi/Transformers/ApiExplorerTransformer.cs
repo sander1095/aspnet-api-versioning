@@ -192,10 +192,7 @@ public class ApiExplorerTransformer :
 
         if ( links.Length > 0 )
         {
-            description.AppendLine()
-                       .AppendLine()
-                       .AppendLine( "### Links" )
-                       .AppendLine()
+            description.Append( "\n\n### Links\n\n" )
                        .Append( links );
         }
 
@@ -228,7 +225,7 @@ public class ApiExplorerTransformer :
         {
             if ( link.LinkTarget.IsAbsoluteUri )
             {
-                markdown.Append( "- " ).AppendLine( link.LinkTarget.OriginalString );
+                markdown.Append( "- " ).Append( link.LinkTarget.OriginalString ).Append( '\n' );
             }
             else
             {
@@ -236,7 +233,8 @@ public class ApiExplorerTransformer :
                         .Append( link.LinkTarget.OriginalString )
                         .Append( "\">" )
                         .Append( link.LinkTarget.OriginalString )
-                        .AppendLine( "</a>" );
+                        .Append( "</a>" )
+                        .Append( '\n' );
             }
         }
         else
@@ -276,7 +274,7 @@ public class ApiExplorerTransformer :
             {
                 if ( appendLine )
                 {
-                    markdown.AppendLine();
+                    markdown.Append( '\n' );
                 }
 
                 RenderLink( markdown, link );

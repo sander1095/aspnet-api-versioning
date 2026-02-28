@@ -44,7 +44,7 @@ public class OpenApiDocumentDescriptionOptions
 
         var participle = when < DateTimeOffset.Now ? SR.Was : SR.WillBe;
         deprecatedNoticeFormat ??= CompositeFormat.Parse( SR.DeprecatedNoticeFormat );
-        return string.Format( CultureInfo.CurrentCulture, deprecatedNoticeFormat, participle, when );
+        return string.Format( CultureInfo.InvariantCulture, deprecatedNoticeFormat, participle, when );
     }
 
     private static string? DefaultSunsetNotice( SunsetPolicy policy )
@@ -56,6 +56,6 @@ public class OpenApiDocumentDescriptionOptions
 
         var participle = when < DateTimeOffset.Now ? SR.Was : SR.WillBe;
         sunsetNoticeFormat ??= CompositeFormat.Parse( SR.SunsetNoticeFormat );
-        return string.Format( CultureInfo.CurrentCulture, sunsetNoticeFormat, participle, when );
+        return string.Format( CultureInfo.InvariantCulture, sunsetNoticeFormat, participle, when );
     }
 }

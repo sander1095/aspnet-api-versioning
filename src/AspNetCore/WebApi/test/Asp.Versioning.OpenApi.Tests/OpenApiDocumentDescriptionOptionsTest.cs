@@ -23,7 +23,7 @@ public class OpenApiDocumentDescriptionOptionsTest
     public void deprecation_notice_should_return_expected_message()
     {
         // arrange
-        var expected = "The API was deprecated on 2/8/2026.";
+        var expected = "The API was deprecated on 02/08/2026.";
         var options = new OpenApiDocumentDescriptionOptions();
         var date = new DateTimeOffset( new DateTime( 2026, 2, 8 ) );
         var policy = new DeprecationPolicy( date );
@@ -53,7 +53,7 @@ public class OpenApiDocumentDescriptionOptionsTest
     public void sunset_notice_should_return_expected_message()
     {
         // arrange
-        var expected = "The API was sunset on 2/8/2026.";
+        var expected = "The API was sunset on 02/08/2026.";
         var options = new OpenApiDocumentDescriptionOptions();
         var date = new DateTimeOffset( new DateTime( 2026, 2, 8 ) );
         var policy = new SunsetPolicy( date );
